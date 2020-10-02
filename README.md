@@ -1,6 +1,6 @@
-# 2HOLCompile
+# miniOneLifeCompile
 
- Minimal scripts to compile 2HOL client, server and editor
+ Minimal scripts to compile 2HOL/OHOL client, server and editor
 
 ## TLDR Usage
 
@@ -37,6 +37,31 @@ After you made changes to the client code, just run this, and it will start the 
 
 ```bash
 ./runServer.sh
+```
+
+## Other Platforms
+
+The scripts cross-compile the client and editor for Windows on Linux, and compile the server for Linux by default. 
+
+To compile the client and editor for Linux:
+
+(Note: running graphical apps on WSL requires additional third-party apps, e.g. Xming, to work)
+
+```bash
+./cleanOldBuildsAndCaches.sh
+./compile.sh 1
+```
+
+```bash
+./cleanOldBuildsAndCaches.sh
+./editor.sh 1
+```
+
+To cross-compile the server for Windows on Linux:
+
+```bash
+./cleanOldBuildsAndCaches.sh
+./server.sh 5
 ```
 
 ## More Info
