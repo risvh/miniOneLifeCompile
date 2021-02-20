@@ -4,9 +4,11 @@ cd "$(dirname "${0}")/.."
 mkdir -p output
 cd output
 
+if [[ $# == 0 ]]; then folderList="animations categories ground music objects sounds sprites transitions"; fi
+if [[ $# > 0 ]]; then folderList="$@"; fi
 
 #Copying from OneLifeData7
-for f in animations categories ground music objects sounds sprites transitions; do
+for f in $folderList; do
     
 	###### Create sym link only
 	# if [ ! -h $f ]; then ln -s ../OneLifeData7/$f .; fi
@@ -23,20 +25,22 @@ for f in animations categories ground music objects sounds sprites transitions; 
 	
 done;
 
-cp ../OneLifeData7/dataVersionNumber.txt .
+if [[ $# == 0 ]];
+	cp ../OneLifeData7/dataVersionNumber.txt .
 
-#Copying from OneLife
-cp ../OneLife/documentation/Readme.txt .
-cp ../OneLife/no_copyright.txt .
-cp ../OneLife/gameSource/language.txt .
-cp ../OneLife/gameSource/us_english_60.txt .
-cp ../OneLife/gameSource/reverbImpulseResponse.aiff .
-cp ../OneLife/gameSource/wordList.txt .
-cp -r ../OneLife/gameSource/graphics .
-cp -r ../OneLife/gameSource/otherSounds .
-cp -r ../OneLife/gameSource/settings .
-cp -r ../OneLife/gameSource/languages .
+	#Copying from OneLife
+	cp ../OneLife/documentation/Readme.txt .
+	cp ../OneLife/no_copyright.txt .
+	cp ../OneLife/gameSource/language.txt .
+	cp ../OneLife/gameSource/us_english_60.txt .
+	cp ../OneLife/gameSource/reverbImpulseResponse.aiff .
+	cp ../OneLife/gameSource/wordList.txt .
+	cp -r ../OneLife/gameSource/graphics .
+	cp -r ../OneLife/gameSource/otherSounds .
+	cp -r ../OneLife/gameSource/settings .
+	cp -r ../OneLife/gameSource/languages .
 
 
-#missing SDL.dll
-cp ../OneLife/build/win32/SDL.dll .
+	#missing SDL.dll
+	cp ../OneLife/build/win32/SDL.dll .
+fi;
