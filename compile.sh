@@ -15,6 +15,7 @@ cd gameSource
 make
 cd ../..
 
+mkdir -p output
 cd output
 
 if [[ $PLATFORM == 5 ]]; then

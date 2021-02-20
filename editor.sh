@@ -32,6 +32,7 @@ if [[ $PLATFORM == 5 ]]; then
 fi
 
 cd ../..
+mkdir -p output
 cd output
 if [[ $PLATFORM == 5 ]]; then cp -f ../OneLife/gameSource/EditOneLife.exe .; fi
 if [[ $PLATFORM == 1 ]]; then cp -f ../OneLife/gameSource/EditOneLife .; fi
