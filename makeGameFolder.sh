@@ -25,7 +25,7 @@ for f in $folderList; do
 	
 done;
 
-if [[ $# == 0 ]];
+if [[ $# == 0 ]]; then
 	cp ../OneLifeData7/dataVersionNumber.txt .
 
 	#Copying from OneLife
