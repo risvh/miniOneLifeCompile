@@ -1,3 +1,5 @@
+[[ $(file applyFixesAndOverride.sh) =~ CRLF ]] && ./changeEOL.sh && exit;
+
 #!/bin/bash
 pushd .
 cd "$(dirname "${0}")/..";
@@ -15,3 +17,7 @@ popd
 cd override
 
 rsync -vr . ../..
+
+cd ..
+find .. -type f -name '*.sh' -exec sed -i 's/\r//g' {} +
+find .. -type f -name 'configure' -exec sed -i 's/\r//g' {} +
