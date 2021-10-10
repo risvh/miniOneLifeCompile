@@ -1,5 +1,3 @@
-[[ $(file applyFixesAndOverride.sh) =~ CRLF ]] && ./changeEOL.sh && exit;
-
 #!/bin/bash
 pushd .
 cd "$(dirname "${0}")/..";
@@ -21,3 +19,4 @@ rsync -vr . ../..
 cd ..
 find .. -type f -name '*.sh' -exec sed -i 's/\r//g' {} +
 find .. -type f -name 'configure' -exec sed -i 's/\r//g' {} +
+find ../OneLife/build -type f \( -name '*.sh' -o ! -name '*.*' \) -exec sed -i 's/\r//g' {} +

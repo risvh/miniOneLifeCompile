@@ -1,3 +1,1 @@
-find . -type f -name '*.sh' -exec sed -i 's/\r//g' {} +;
-echo "EOL changed.";
-./applyFixesAndOverride.sh
+find . -type f -name '*.sh' -exec sed -i 's/\r//g' {} +;echo "EOL changed.";
