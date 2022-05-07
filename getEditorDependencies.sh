@@ -6,7 +6,7 @@ cd dependencies
 
 # Getting zlib
 if [ ! -d zlib* ]; then
-	wget http://zlib.net/zlib-1.2.11.tar.gz -O- | tar xfz -
+	wget http://zlib.net/zlib-1.2.12.tar.gz -O- | tar xfz -
 	cd zlib*
 	host="i686-w64-mingw32"
 	prefixdir="/usr/i686-w64-mingw32"
