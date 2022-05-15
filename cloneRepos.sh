@@ -26,12 +26,13 @@ if [[ ! -d OneLife ]]; then git clone $CODE_REPO OneLife; fi
 if [[ ! -d OneLifeData7 ]]; then git clone $DATA_REPO OneLifeData7; fi
 if [[ ! -d minorGems ]]; then git clone $GEMS_REPO minorGems; fi
 
-#Hetuw for 2HOL with minitech
-# git -C "OneLife" checkout currentVersion;
+#Hetuw for 2HOL with minitech (Town planner)
+# git -C "OneLife" checkout townPlanner;
+# git -C "minorGems" checkout 4f3991f #266 Sep28 2019
 
 #Hetuw v268 (for 2HOL, before login format was changed)
-# git -C "OneLife" checkout 1ab17ba #268 Oct4
-# git -C "minorGems" checkout 4f3991f #266 Sep28
+# git -C "OneLife" checkout 1ab17ba #268 Oct4 2019
+# git -C "minorGems" checkout 4f3991f #266 Sep28 2019
 
 
 
