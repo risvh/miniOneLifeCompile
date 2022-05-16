@@ -1,8 +1,8 @@
 set -e
 cd "$(dirname "${0}")/.."
 
-PLATFORM=$1
-if [[ $PLATFORM == "" ]]; then PLATFORM=5; fi
+##### Configure and Make
+PLATFORM=${1-5}
 if [[ $PLATFORM != 1 ]] && [[ $PLATFORM != 5 ]]; then
 	echo "Usage: 1 for Linux, 5 for XCompiling for Windows (Default)"
 	exit 1
@@ -32,8 +32,34 @@ if [[ $PLATFORM == 5 ]]; then
 fi
 
 cd ../..
+
+
+##### Create Game Folder
 mkdir -p output
 cd output
+
+FOLDERS="animations categories ground music objects sounds sprites transitions"
+TARGET="."
+LINK="../OneLifeData7"
+../miniOneLifeCompile/createSymLinks.sh $PLATFORM "$FOLDERS" $TARGET $LINK
+
+FOLDERS="graphics otherSounds languages"
+TARGET="."
+LINK="../OneLife/gameSource"
+../miniOneLifeCompile/createSymLinks.sh $PLATFORM "$FOLDERS" $TARGET $LINK
+
+cp -r ../OneLife/gameSource/settings .
+cp ../OneLife/gameSource/us_english_60.txt .
+
+cp ../OneLife/gameSource/reverbImpulseResponse.aiff .
+
+cp ../OneLifeData7/dataVersionNumber.txt .
+
+#missing SDL.dll
+if [[ $PLATFORM == 5 ]]; then cp ../OneLife/build/win32/SDL.dll .; fi
+
+
+##### Copy to Game Folder
 if [[ $PLATFORM == 5 ]]; then cp -f ../OneLife/gameSource/EditOneLife.exe .; fi
 if [[ $PLATFORM == 1 ]]; then cp -f ../OneLife/gameSource/EditOneLife .; fi
 

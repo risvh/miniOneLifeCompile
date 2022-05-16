@@ -12,7 +12,4 @@ set -e
 ./applyFixesAndOverride.sh
 
 
-./makeGameFolder.sh
-
-
 ./compile.sh
