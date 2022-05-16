@@ -64,6 +64,18 @@ To cross-compile the server for Windows on Linux:
 ./server.sh 5
 ```
 
+## Note 
+
+The scripts expect folder structure as below, you may want to clone this repo within a root folder:
+```
+root/
+├── miniOneLifeCompile/
+├── OneLife/
+├── OneLifeData7/
+├── minorGems/
+└── output/
+```
+
 ## More Info
 
 This is meant to be minimal, if you want more info:
