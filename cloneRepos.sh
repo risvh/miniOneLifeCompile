@@ -55,6 +55,8 @@ helpmsg() {
 	echo "  risvh-client"
 	echo "  town-planner"
 	echo "  hetuw-old"
+	echo "  ohol-client"
+	echo "  ohol-server"
 
 }
 
@@ -78,6 +80,14 @@ elif [[ "$repo_option" == "risvh-client" ]]; then
 	git -C "OneLife" checkout risvh/master
 	git -C "OneLifeData7" checkout twohoursonelife/master
 	git -C "minorGems" checkout hetuw/master
+elif [[ "$repo_option" == "ohol-client" ]]; then
+	git -C "OneLife" checkout jasonrohrer/master
+	git -C "OneLifeData7" checkout jasonrohrer/master
+	git -C "minorGems" checkout jasonrohrer/master
+elif [[ "$repo_option" == "ohol-server" ]]; then
+	git -C "OneLife" checkout jasonrohrer/master
+	git -C "OneLifeData7" checkout jasonrohrer/master
+	git -C "minorGems" checkout jasonrohrer/master
 
 #Hetuw for 2HOL with minitech (Town planner)
 elif [[ $repo_option == "town-planner" ]]; then
