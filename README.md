@@ -45,6 +45,8 @@ The scripts cross-compile the client and editor for Windows on Linux, and compil
 
 To compile the client and editor for Linux:
 
+Change the number in "PLATFORM" to 1, to ensure compile and editor default to linux.
+
 (Note: running graphical apps on WSL requires additional third-party apps, e.g. Xming, to work)
 
 ```bash
