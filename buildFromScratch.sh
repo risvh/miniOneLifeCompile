@@ -6,7 +6,7 @@ set -e
 ./getDependencies.sh
 
 
-./cloneRepos.sh
+./cloneRepos.sh risvh
 
 
 ./applyFixesAndOverride.sh

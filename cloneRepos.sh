@@ -48,13 +48,49 @@ git -C OneLife fetch --all
 git -C OneLifeData7 fetch --all
 git -C minorGems fetch --all
 
+helpmsg() {
+	echo "Repositories are up to date. Options to checkout: "
+	echo "  thol-server"
+	echo "  thol-client"
+	echo "  risvh-client"
+	echo "  town-planner"
+	echo "  hetuw-old"
+
+}
+
+if [[ "$1" == "" ]]; then
+	helpmsg
+	echo -n "Input selection: "
+	read -r repo_option
+else
+	repo_option="$1"
+fi
+
+if [[ "$repo_option" == "thol-server" ]]; then
+	git -C "OneLife" checkout twohoursonelife/master
+	git -C "OneLifeData7" checkout twohoursonelife/master
+	git -C "minorGems" checkout twohoursonelife/master
+elif [[ "$repo_option" == "thol-client" ]]; then
+	git -C "OneLife" checkout twohoursonelife/master
+	git -C "OneLifeData7" checkout twohoursonelife/master
+	git -C "minorGems" checkout twohoursonelife/master
+elif [[ "$repo_option" == "risvh-client" ]]; then
+	git -C "OneLife" checkout risvh/master
+	git -C "OneLifeData7" checkout twohoursonelife/master
+	git -C "minorGems" checkout hetuw/master
+
 #Hetuw for 2HOL with minitech (Town planner)
-# git -C "OneLife" checkout townPlanner;
-# git -C "minorGems" checkout 4f3991f #266 Sep28 2019
+elif [[ $repo_option == "town-planner" ]]; then
+  git -C "OneLife" checkout risvh/townPlanner;
+  git -C "minorGems" checkout 4f3991f #266 Sep28 2019
 
 #Hetuw v268 (for 2HOL, before login format was changed)
-# git -C "OneLife" checkout 1ab17ba #268 Oct4 2019
-# git -C "minorGems" checkout 4f3991f #266 Sep28 2019
+elif [[ $repo_option == "hetuw-old" ]]; then
+  git -C "OneLife" checkout 1ab17ba #268 Oct4 2019
+  git -C "minorGems" checkout 4f3991f #266 Sep28 2019
+else
+	helpmsg
+fi
 
 
 
