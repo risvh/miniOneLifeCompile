@@ -1,5 +1,8 @@
 set -e
-PLATFORM=${1-$(cat PLATFORM)}
+
+PLATFORM=$(cat PLATFORM_OVERRIDE)
+if [[ $PLATFORM != 1 ]] && [[ $PLATFORM != 5 ]]; then PLATFORM=${1-5}; fi
+
 cd "$(dirname "${0}")/.."
 
 ##### Configure and Make
