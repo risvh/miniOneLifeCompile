@@ -14,7 +14,7 @@ Get WSL (Windows Subsystem for Linux) by enabling it in "Apps & features", and t
 
 ```bash
 ./cleanOldBuildsAndCaches.sh
-./cloneRepos thol-server
+./cloneReposAndCheckout.sh thol
 ./server.sh
 ```
 
@@ -23,7 +23,7 @@ Get WSL (Windows Subsystem for Linux) by enabling it in "Apps & features", and t
 ```bash
 ./cleanOldBuildsAndCaches.sh
 ./getEditorDependencies.sh
-./clonerepos town-planner
+./cloneReposAndCheckout.sh townplanner
 ./editor.sh
 ```
 
