@@ -1,6 +1,8 @@
 set -e
 pushd .
-PLATFORM=${1-$(cat PLATFORM)}
+
+PLATFORM=$(cat PLATFORM_OVERRIDE)
+if [[ $PLATFORM != 1 ]] && [[ $PLATFORM != 5 ]]; then PLATFORM=${1-1}; fi
 
 cd "$(dirname "${0}")/.."
 
