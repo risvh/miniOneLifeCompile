@@ -14,7 +14,6 @@ Get WSL (Windows Subsystem for Linux) by enabling it in "Apps & features", and t
 
 ```bash
 ./cleanOldBuildsAndCaches.sh
-./cloneReposAndCheckout.sh thol
 ./server.sh
 ```
 
@@ -23,13 +22,12 @@ Get WSL (Windows Subsystem for Linux) by enabling it in "Apps & features", and t
 ```bash
 ./cleanOldBuildsAndCaches.sh
 ./getEditorDependencies.sh
-./cloneReposAndCheckout.sh townplanner
 ./editor.sh
 ```
 
-## Quick Recompiling the Game Client
+## Recompiling the Game Client
 
-After you made changes to the client code, just run this, and it will start the new client as well:
+After you made changes to the client code, just run this, it will start the new client as well:
 
 ```bash
 ./compile.sh
@@ -41,13 +39,23 @@ After you made changes to the client code, just run this, and it will start the 
 ./runServer.sh
 ```
 
+## Compiling 2HOL Hetuw Client
+
+```bash
+./cleanOldBuildsAndCaches.sh
+./cloneReposAndCheckout.sh thol_hetuw
+./compile.sh
+```
+
+For other build targets, see `./cloneReposAndCheckout.sh help`.
+
 ## Other Platforms
 
 The scripts cross-compile the client and editor for Windows on Linux, and compile the server for Linux by default. 
 
 To compile the client and editor for Linux:
 
-Either specify platform with 1 as below, or change the number in PLATFORM_OVERRIDE to 1 to make compiling default to linux.
+Either specify platform with 1 as below, or change the number in PLATFORM_OVERRIDE to 1 to make compiling default to Linux.
 
 (Note: running graphical apps on WSL requires additional third-party apps, e.g. Xming, to work)
 
@@ -79,6 +87,9 @@ root/
 ├── minorGems/
 └── output/
 ```
+
+If you are running the scripts on WSL, you should not place the root folder in a WSL directory; instead put it in a Windows directory, and fire a WSL shell within that directory.
+
 
 ## More Info
 
