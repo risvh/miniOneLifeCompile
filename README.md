@@ -14,6 +14,7 @@ Get WSL (Windows Subsystem for Linux) by enabling it in "Apps & features", and t
 
 ```bash
 ./cleanOldBuildsAndCaches.sh
+./cloneReposAndCheckout.sh thol
 ./server.sh
 ```
 
@@ -22,6 +23,7 @@ Get WSL (Windows Subsystem for Linux) by enabling it in "Apps & features", and t
 ```bash
 ./cleanOldBuildsAndCaches.sh
 ./getEditorDependencies.sh
+./cloneReposAndCheckout.sh townplanner
 ./editor.sh
 ```
 
@@ -44,6 +46,8 @@ After you made changes to the client code, just run this, and it will start the 
 The scripts cross-compile the client and editor for Windows on Linux, and compile the server for Linux by default. 
 
 To compile the client and editor for Linux:
+
+Either specify platform with 1 as below, or change the number in PLATFORM_OVERRIDE to 1 to make compiling default to linux.
 
 (Note: running graphical apps on WSL requires additional third-party apps, e.g. Xming, to work)
 

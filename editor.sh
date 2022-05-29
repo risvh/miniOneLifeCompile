@@ -1,8 +1,11 @@
 set -e
+
+PLATFORM=$(cat PLATFORM_OVERRIDE)
+if [[ $PLATFORM != 1 ]] && [[ $PLATFORM != 5 ]]; then PLATFORM=${1-5}; fi
+
 cd "$(dirname "${0}")/.."
 
 ##### Configure and Make
-PLATFORM=${1-5}
 if [[ $PLATFORM != 1 ]] && [[ $PLATFORM != 5 ]]; then
 	echo "Usage: 1 for Linux, 5 for XCompiling for Windows (Default)"
 	exit 1
