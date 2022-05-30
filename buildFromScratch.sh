@@ -6,7 +6,7 @@ set -e
 ./getDependencies.sh
 
 
-./cloneReposAndCheckout.sh
+./cloneRepos.sh
 
 
 ./applyFixesAndOverride.sh

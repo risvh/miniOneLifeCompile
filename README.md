@@ -1,6 +1,6 @@
 # miniOneLifeCompile
 
- Minimal scripts to compile 2HOL/OHOL client, server and editor
+Minimal scripts to compile 2HOL/OHOL client, server and editor
 
 ## TLDR Usage
 
@@ -10,7 +10,7 @@ Get WSL (Windows Subsystem for Linux) by enabling it in "Apps & features", and t
 ./buildFromScratch.sh
 ```
 
-## Compiling (and running) the Server
+## Compiling the Server
 
 ```bash
 ./cleanOldBuildsAndCaches.sh
@@ -27,7 +27,7 @@ Get WSL (Windows Subsystem for Linux) by enabling it in "Apps & features", and t
 
 ## Recompiling the Game Client
 
-After you made changes to the client code, just run this, it will start the new client as well:
+After making changes to the client code, just run this:
 
 ```bash
 ./compile.sh
@@ -43,11 +43,11 @@ After you made changes to the client code, just run this, it will start the new 
 
 ```bash
 ./cleanOldBuildsAndCaches.sh
-./cloneReposAndCheckout.sh thol_hetuw
+./checkoutDifferentRepo.sh thol_hetuw
 ./compile.sh
 ```
 
-For other build targets, see `./cloneReposAndCheckout.sh help`.
+For other build targets, see `./checkoutDifferentRepo.sh help`.
 
 ## Other Platforms
 
