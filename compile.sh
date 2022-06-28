@@ -45,7 +45,9 @@ cp ../OneLife/server/wordList.txt .
 cp ../OneLifeData7/dataVersionNumber.txt .
 
 #missing SDL.dll
-if [[ $PLATFORM == 5 ]]; then cp ../OneLife/build/win32/SDL.dll .; fi
+if [[ $PLATFORM == 5 ]]; then 
+    if [ ! -f SDL.dll ]; then cp ../OneLife/build/win32/SDL.dll .; fi
+fi
 
 
 ##### Copy to Game Folder and Run
