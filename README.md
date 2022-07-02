@@ -43,7 +43,8 @@ After making changes to the client code, just run this:
 
 ```bash
 ./cleanOldBuildsAndCaches.sh
-./checkoutDifferentRepo.sh thol_hetuw
+./checkoutDifferentRepo.sh tholHetuw
+./applyFixesAndOverride.sh
 ./compile.sh
 ```
 
