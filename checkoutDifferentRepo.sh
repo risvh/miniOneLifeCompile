@@ -2,13 +2,15 @@
 set -e
 cd "$(dirname "${0}")/.."
 
+### Help message to use this script
 helpmsg() {
 	echo "Options to checkout: "
 	echo "  thol        - client, server and editor"
-	echo "  thol_hetuw  - client"
+	echo "  tholHetuw   - client"
 	echo "  townplanner - editor"
 	echo "  ohol        - client, server and editor"
-	echo "  ohol_hetuw  - client"
+	echo "  oholHetuw   - client"
+	echo "  origin"
 }
 
 if [[ "$1" == "" ]]; then 
@@ -16,6 +18,7 @@ if [[ "$1" == "" ]]; then
     exit 1
 fi
 
+### Ensure all repos are clean before checking out
 dirty=0
 for repo in OneLife OneLifeData7 minorGems; do
     if [[ -n "$(git -C $repo status --porcelain)" ]]; then
@@ -37,33 +40,70 @@ if [ "$dirty" -ne 0 ]; then
     fi
 fi
 
+### Function to add remote and track its branches
+addRemoteAndTrackBranches() {
+    local repo=$1
+    local remote=$2
+    local remoteURL=$3
+    
+    ### Add remote if not exist
+    git -C $repo remote show $remote > /dev/null 2>&1 && return 0 || git -C $repo remote add $remote $remoteURL
+    git -C $repo fetch $remote
+    
+    ### Track all branches of this remote 
+    for remoteBranch in `git -C $repo branch -r | grep $remote/ | grep -v /HEAD`; do 
+        git -C $repo checkout -b "${remoteBranch////_}" --track $remoteBranch; 
+    done
+}
+
+
+### Get the correct remotes given the option
 repo_option="$1"
 
 if [[ "$repo_option" == "thol" ]]; then
-	git -C OneLife checkout thol/master
-	git -C OneLifeData7 checkout thol/master
-	git -C minorGems checkout thol/master
-elif [[ "$repo_option" == "thol_hetuw" ]]; then
-	git -C OneLife checkout thol_hetuw/master
-	git -C OneLifeData7 checkout thol/master
-	git -C minorGems checkout ohol_hetuw/master
+    addRemoteAndTrackBranches OneLife thol "https://github.com/twohoursonelife/OneLife.git"
+    addRemoteAndTrackBranches OneLifeData7 thol "https://github.com/twohoursonelife/OneLifeData7.git"
+    addRemoteAndTrackBranches minorGems thol "https://github.com/twohoursonelife/minorGems.git"
+	git -C OneLife checkout thol_master
+	git -C OneLifeData7 checkout thol_master
+	git -C minorGems checkout thol_master
+elif [[ "$repo_option" == "tholHetuw" ]]; then
+    addRemoteAndTrackBranches OneLife tholHetuw "https://github.com/risvh/OneLife-1.git"
+    addRemoteAndTrackBranches OneLifeData7 thol "https://github.com/twohoursonelife/OneLifeData7.git"
+    addRemoteAndTrackBranches minorGems oholHetuw "https://github.com/hetuw/minorGems.git"
+	git -C OneLife checkout tholHetuw_master
+	git -C OneLifeData7 checkout thol_master
+	git -C minorGems checkout oholHetuw_master
 	# Hetuw v268 works for 2HOL, that was before login format changes
 	# git -C OneLife checkout 1ab17ba #268 Oct4 2019
 	# git -C minorGems checkout 4f3991f #266 Sep28 2019
 elif [[ "$repo_option" == "townplanner" ]]; then
-	# Town planner is on a branch of the thol_hetuw repo
-	# it uses an old version of ohol_hetuw minorGems
-	git -C OneLife checkout thol_hetuw/townPlanner
-	git -C OneLifeData7 checkout thol/master
+    addRemoteAndTrackBranches OneLife tholHetuw "https://github.com/risvh/OneLife-1.git"
+    addRemoteAndTrackBranches OneLifeData7 thol "https://github.com/twohoursonelife/OneLifeData7.git"
+    addRemoteAndTrackBranches minorGems oholHetuw "https://github.com/hetuw/minorGems.git"
+	# Town planner is on a branch of the tholHetuw repo
+	# it uses an old version of oholHetuw minorGems
+	git -C OneLife checkout tholHetuw_townPlanner
+	git -C OneLifeData7 checkout thol_master
 	git -C minorGems checkout 4f3991f #266 Sep28 2019
 elif [[ "$repo_option" == "ohol" ]]; then
-	git -C OneLife checkout ohol/master
-	git -C OneLifeData7 checkout ohol/master
-	git -C minorGems checkout ohol/master
-elif [[ "$repo_option" == "ohol_hetuw" ]]; then
-	git -C OneLife checkout ohol_hetuw/master
-	git -C OneLifeData7 checkout ohol/master
-	git -C minorGems checkout ohol_hetuw/master
+    addRemoteAndTrackBranches OneLife ohol "https://github.com/jasonrohrer/OneLife.git"
+    addRemoteAndTrackBranches OneLifeData7 ohol "https://github.com/jasonrohrer/OneLifeData7.git"
+    addRemoteAndTrackBranches minorGems ohol "https://github.com/jasonrohrer/minorGems.git"
+	git -C OneLife checkout ohol_master
+	git -C OneLifeData7 checkout ohol_master
+	git -C minorGems checkout ohol_master
+elif [[ "$repo_option" == "oholHetuw" ]]; then
+    addRemoteAndTrackBranches OneLife oholHetuw "https://github.com/hetuw/OneLife.git"
+    addRemoteAndTrackBranches OneLifeData7 ohol "https://github.com/jasonrohrer/OneLifeData7.git"
+    addRemoteAndTrackBranches minorGems oholHetuw "https://github.com/hetuw/minorGems.git"
+	git -C OneLife checkout oholHetuw_master
+	git -C OneLifeData7 checkout ohol_master
+	git -C minorGems checkout oholHetuw_master
+elif [[ "$repo_option" == "origin" ]]; then
+	git -C OneLife checkout master
+	git -C OneLifeData7 checkout master
+	git -C minorGems checkout master
 else
 	helpmsg
 fi
