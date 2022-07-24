@@ -1,3 +1,5 @@
+#!/bin/bash
+
 set -e
 PLATFORM=$1
 FOLDERS=$2

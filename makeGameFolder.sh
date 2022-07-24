@@ -1,3 +1,5 @@
+#!/bin/bash
+
 set -e
 PLATFORM=${1-$(cat PLATFORM)}
 cd "$(dirname "${0}")/.."

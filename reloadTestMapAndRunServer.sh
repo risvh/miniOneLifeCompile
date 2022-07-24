@@ -1,3 +1,5 @@
+#!/bin/bash
+
 pushd .
 cd ../output
 find . -type f -name '*.db' -exec rm {} +
