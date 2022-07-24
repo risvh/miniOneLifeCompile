@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -e
 
 PLATFORM=$(cat PLATFORM_OVERRIDE)
