@@ -1,17 +1,14 @@
 #!/bin/bash
 set -e
-
 PLATFORM=$(cat PLATFORM_OVERRIDE)
 if [[ $PLATFORM != 1 ]] && [[ $PLATFORM != 5 ]]; then PLATFORM=${1-5}; fi
-
-cd "$(dirname "${0}")/.."
-
-##### Configure and Make
 if [[ $PLATFORM != 1 ]] && [[ $PLATFORM != 5 ]]; then
 	echo "Usage: 1 for Linux, 5 for XCompiling for Windows (Default)"
 	exit 1
 fi
+cd "$(dirname "${0}")/.."
 
+##### Configure and Make
 cd OneLife
 ./configure $PLATFORM
 
@@ -44,7 +41,7 @@ cp ../OneLife/gameSource/reverbImpulseResponse.aiff .
 cp ../OneLifeData7/dataVersionNumber.txt .
 
 #missing SDL.dll
-if [[ $PLATFORM == 5 ]]; then cp ../OneLife/build/win32/SDL.dll .; fi
+if [[ $PLATFORM == 5 ]] && [ ! -f SDL.dll ]; then cp ../OneLife/build/win32/SDL.dll .; fi
 
 
 ##### Copy to Game Folder
