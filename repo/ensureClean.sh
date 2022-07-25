@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-cd "$(dirname "${0}")/.."
+cd "$(dirname "${0}")/../.."
 
 repos=${1-"OneLife OneLifeData7 minorGems"}
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-cd "$(dirname "${0}")/.."
+cd "$(dirname "${0}")/../.."
 
 repo=$1
 remote=$2

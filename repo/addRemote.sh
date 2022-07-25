@@ -1,13 +1,13 @@
 #!/bin/bash
 set -e
-cd "$(dirname "${0}")/.."
+cd "$(dirname "${0}")/../.."
 
 repo=$1
 remote=$2
 remoteURL=$3
 
 ### Clean repo first
-miniOneLifeCompile/ensureClean.sh $repo
+miniOneLifeCompile/repo/ensureClean.sh $repo
 
 ### Add remote if not exist
 git -C $repo remote show $remote > /dev/null 2>&1 && exit 0 || git -C $repo remote add $remote $remoteURL

@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-cd "$(dirname "${0}")/.."
+cd "$(dirname "${0}")/../.."
 
 repo=$1
 remote=$2
@@ -9,6 +9,7 @@ remote=$2
 git -C $repo checkout --detach
 
 ### Delete all branches prefixed with the remote name, except the one checked out
+### Cannot remove origin with this...
 git -C $repo branch | grep "${remote}_" | grep -v \* | xargs -r git -C $repo branch -D 
 
 ### Remove the remote
