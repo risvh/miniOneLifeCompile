@@ -1,13 +1,12 @@
 #!/bin/bash
-
 set -e
-PLATFORM=${1-$(cat PLATFORM)}
+# PLATFORM=$(cat PLATFORM_OVERRIDE)
+# if [[ $PLATFORM != 1 ]] && [[ $PLATFORM != 5 ]]; then PLATFORM=${1-5}; fi
+# if [[ $PLATFORM != 1 ]] && [[ $PLATFORM != 5 ]]; then
+	# echo "Usage: 1 for Linux, 5 for XCompiling for Windows (Default)"
+	# exit 1
+# fi
 cd "$(dirname "${0}")/.."
-
-if [[ $PLATFORM != 1 ]] && [[ $PLATFORM != 5 ]]; then
-	echo "Usage: 1 for Linux, 5 for XCompiling for Windows (Default)"
-	exit 1
-fi
 
 mkdir -p output
 cd output
