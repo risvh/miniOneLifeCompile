@@ -21,3 +21,5 @@ for f in $(find -path '*' -not -path '*/miniOneLifeCompile/*.sh' -type f); do
 done
 
 
+cd ..
+find ../OneLife -type f \( -name 'configure' \) -exec sed -i 's/$/\r/g' {} +
