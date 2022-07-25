@@ -26,12 +26,12 @@ cd output
 FOLDERS="animations categories ground music objects sounds sprites transitions"
 TARGET="."
 LINK="../OneLifeData7"
-../miniOneLifeCompile/createSymLinks.sh $PLATFORM "$FOLDERS" $TARGET $LINK
+../miniOneLifeCompile/util/createSymLinks.sh $PLATFORM "$FOLDERS" $TARGET $LINK
 
 FOLDERS="graphics otherSounds languages"
 TARGET="."
 LINK="../OneLife/gameSource"
-../miniOneLifeCompile/createSymLinks.sh $PLATFORM "$FOLDERS" $TARGET $LINK
+../miniOneLifeCompile/util/createSymLinks.sh $PLATFORM "$FOLDERS" $TARGET $LINK
 
 cp -rn ../OneLife/gameSource/settings .
 cp ../OneLife/gameSource/us_english_60.txt .
