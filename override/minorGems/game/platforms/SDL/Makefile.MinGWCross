@@ -18,12 +18,12 @@
 
 
 # static lib flag needed to link compiled objs against miniupnp
-PLATFORM_COMPILE_FLAGS = -DWIN_32 -DSTATICLIB 
+PLATFORM_COMPILE_FLAGS = -DWIN_32 -DSTATICLIB
 
 
 # need various GL libraries, winmm, and portaudio
 # -mwindows tells mingw to hide the dos command window on launch
-PLATFORM_LINK_FLAGS = -lopengl32 -lglu32 -lmingw32 -lSDLmain -lSDL -mwindows -lwsock32 -lwinmm -static-libstdc++ -static-libgcc ${CUSTOM_MINGW_LINK_FLAGS} 
+PLATFORM_LINK_FLAGS = -lopengl32 -lglu32 -lmingw32 -lSDLmain -lSDL -mwindows -lwsock32 -lwinmm -static-libstdc++ -static-libgcc ${CUSTOM_MINGW_LINK_FLAGS}
 
 # for headless builds with no GL or SDL
 PLATFORM_LINK_FLAGS_HEADLESS = -lmingw32 -mconsole -mwindows -lwsock32 -lwinmm -static-libstdc++ -static-libgcc ${CUSTOM_MINGW_LINK_FLAGS}
@@ -37,7 +37,7 @@ PLATFORM_LIBPNG_FLAG = -lz -lpng
 
 
 # All platforms but OSX support g++ and need no linker hacks
-GXX = /usr/bin/i686-w64-mingw32-g++ 
+GXX = i686-w64-mingw32-g++ 
 LINK_FLAGS = 
 
 
@@ -46,7 +46,7 @@ all: all2
 
 icon.o: ../build/win32/icon.ico ../build/win32/icon.rc
 	cp ../build/win32/icon.ico ../build/win32/icon.rc .
-	/usr/bin/i686-w64-mingw32-windres -i icon.rc -o icon.o
+	i686-w64-mingw32-windres -i icon.rc -o icon.o
 
 ICON_FILE = icon.o
 
@@ -67,5 +67,3 @@ DIRECTORY_PLATFORM_PATH = win32
 
 POLL_PLATFORM = Unix
 POLL_PLATFORM_PATH = unix
-
-
