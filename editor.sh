@@ -16,24 +16,8 @@ cd OneLife
 ./configure $PLATFORM
 
 cd gameSource
-
-if [[ $PLATFORM == 5 ]]; then
-	_OLD_PATH="${PATH}"; export PATH="/usr/i686-w64-mingw32/bin:${PATH}"
-	cp Makefile Makefile.bak
-
-	#Fix to make SDL statically linked
-	sed -i '/^GXX =/s,$, -static `sdl-config --static-libs`,' Makefile
-
-	#libpng depends on zlib, the order of linking flag matters
-	sed -i -r '/^PLATFORM_LIBPNG_FLAG =/aPLATFORM_LIBPNG_FLAG = -lpng16 -lz' Makefile
-fi
-
+if [[ $PLATFORM == 5 ]]; then export PATH="/usr/i686-w64-mingw32/bin:${PATH}"; fi
 ./makeEditor.sh
-
-if [[ $PLATFORM == 5 ]]; then
-	export PATH="${_OLD_PATH}"; unset _OLD_PATH
-	mv Makefile.bak Makefile
-fi
 
 cd ../..
 

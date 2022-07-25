@@ -15,7 +15,9 @@ cd OneLife
 ./configure $PLATFORM
 
 cd gameSource
+if [[ $PLATFORM == 5 ]]; then export PATH="/usr/i686-w64-mingw32/bin:${PATH}"; fi
 make
+
 cd ../..
 
 
