@@ -2,22 +2,24 @@
 
 Minimal scripts to compile 2HOL/OHOL client, server and editor
 
-## TLDR Usage
+## TLDR usage
 
-Get WSL (Windows Subsystem for Linux) by enabling it in "Apps & features", and then in the WSL shell run the line below to compile and start the game client:
+Get WSL (Windows Subsystem for Linux) by enabling it in "Apps & features".
+
+In the WSL shell run the line below to compile and start the game client:
 
 ```bash
 ./buildFromScratch.sh
 ```
 
-## Compiling the Server
+## To compile the Server:
 
 ```bash
 ./cleanOldBuildsAndCaches.sh
 ./server.sh
 ```
 
-## Compiling the Editor
+## To compile the Editor:
 
 ```bash
 ./cleanOldBuildsAndCaches.sh
@@ -25,39 +27,36 @@ Get WSL (Windows Subsystem for Linux) by enabling it in "Apps & features", and t
 ./editor.sh
 ```
 
-## Recompiling the Game Client
-
-After making changes to the client code, just run this:
+## To recompile the game after code change:
 
 ```bash
 ./compile.sh
 ```
 
-## Start Server (Without Recompiling)
+## To start the Server (without recompiling)
 
 ```bash
 ./runServer.sh
 ```
 
-## Compiling 2HOL Hetuw Client
+## To compile 2HOL Hetuw
 
 ```bash
 ./cleanOldBuildsAndCaches.sh
-./checkoutDifferentRepo.sh tholHetuw
+./repo/checkoutDifferentRepo.sh tholHetuw
 ./applyFixesAndOverride.sh
 ./compile.sh
 ```
 
-For other build targets, see `./checkoutDifferentRepo.sh help`.
+For other build targets, do `./checkoutDifferentRepo.sh` without argument to get the list of options.
 
-## Other Platforms
+## Compile for other platforms
 
-The scripts cross-compile the client and editor for Windows on Linux, and compile the server for Linux by default. 
+The scripts cross-compile the client and editor for Windows on Linux, and compile the server for Linux by default.  
+(Remember to `./cleanOldBuildsAndCaches.sh` before compiling every time you switch between for different platforms.)
 
-To compile the client and editor for Linux:
-
-Either specify platform with 1 as below, or change the number in PLATFORM_OVERRIDE to 1 to make compiling default to Linux.
-
+To compile the client and editor for Linux:  
+Either specify platform with 1 as below, or change the number in PLATFORM_OVERRIDE to 1 to make compiling default to Linux.  
 (Note: running graphical apps on WSL requires additional third-party apps, e.g. Xming, to work)
 
 ```bash
@@ -89,7 +88,87 @@ root/
 └── output/
 ```
 
-If you are running the scripts on WSL, you should not place the root folder in a WSL directory; instead put it in a Windows directory, and fire a WSL shell within that directory.
+Run all the scrips from `root/miniOneLifeCompile/`. If you are running the scripts on WSL, you should not place the root folder in a WSL directory; instead put it in a Windows directory, and fire a WSL shell within that directory.
+
+## What do all these scripts do?
+
+`./applyFixesAndOverride.sh`  
+Fix a few things that prevent cross-compiling, run this whenever you have a fresh clone of repos or whenever you reset.
+
+`./buildFromScratch.sh`  
+Build the game from scratch. It is only for demonstration purpose.
+
+`./cleanOldBuildsAndOptionallyCaches.sh` `[1: clear cache]`  
+Remove previous build files. Must run this before switching to compile for a different platform.
+
+`./cloneRepos.sh`  
+Clone the 3 repos - OneLife, OneLifeData7 and minorGems if they don't exist yet.
+
+`./compile.sh` `[1: for Linux | 5: for Windows (default)]`  
+Compile and then run the game.
+
+`./editor.sh` `[1: for Linux | 5: for Windows (default)]`  
+Compile the editor.
+
+`./getDependencies.sh`  
+Get the dependencies required by the game.
+
+`./getEditorDependencies.sh`  
+Get the dependencies required by the editor.
+
+`./makeFullGameFolder.sh`  
+Copy the game assets into the output folder. You don't need to run this unless you want a full copy of the files. The scripts by default make symlinks/shortcuts instead.
+
+`PLATFORM_OVERRIDE`  
+Override the platform defaults. The scripts by default compile the game and editor for Windows and server for Linux. Put 1 inside for Linux or 5 for Windows if you're not happy about the defaults but too lazy to type the alternative number.
+
+`./runServer.sh`  
+Start the server.
+
+`./server.sh` `[1: for Linux (default) | 5: for Windows]`  
+Compile and start the server.
+
+`./util/changeEOL.sh`  
+Change the EOL of the scripts in this repo to Unix style. Helpful if you clone this repo with a Windows software but gonna run them on WSL.
+
+`./util/createSymLinks.sh`  
+Used by other scripts to create symlinks or Windows shortcuts.
+
+`./util/mklink.sh`  
+Used by other scripts to create Windows shortcuts.
+
+---
+
+There are some git scripts in the `./repo/` folder to help the dev process. It is not the purpose of this repo to git-manage. ***These scripts are not polished and could be dangerous to use. Please read them before running.***
+
+My use case: I use Github Desktop to manage my repos. I want the different forks of say OneLife e.g. 2HOL OneLife, Hetuw OneLife etc to be remotes in the same folder. The scripts below try to keep Github Desktop from freaking out with this arrangement.
+
+`./repo/addRemote.sh`  `[repo: OneLife / OneLifeData7 / minorGems] [remote] [remoteURL]`  
+Add a remote and track all its branches.
+
+`./repo/changeWhatToBuild.sh` `[build options]`  
+Checkout different remotes of all 3 repos OneLife, OneLifeData7 and minorGems given what you wish to build. Leave the argument blank to see the options. For example, if you want to build 2HOL Hetuw, this script will change OneLife, OneLifeData7 and minorGems to the appropriate forks so they are compatible and so the game will compile. Script will add the forks as remotes if they do not exist.
+
+`./repo/defineURLs.sh`  
+Do `source ./repo/defineURLs.sh` so you don't need to type out the urls.
+
+`./repo/emptyRepo.sh` `[repo]`  
+Clear ALL the remotes and branches from a local repo.
+
+`./repo/ensureClean.sh` `[repo: OneLife / OneLifeData7 / minorGems]`  
+Check if the repos are clean, if not, prompt to reset them.
+
+`./repo/newBranchOnThisRemote.sh`  `[repo] [remote] [newBranchName]`  
+Create a new branch and publish it to the remote. Since Github Desktop seems to always publish new branches to origin...
+
+`./repo/removeRemote.sh`  `[repo] [remote]`  
+Remove a remote and all its local branches.
+
+`./repo/testPullRequest.sh`  `[repo] [remote] [prNum]`  
+Fetch and checkout a PR by its number as a new local branch.
+
+`./repo/undoOverride.sh`  
+Roughly undo `./applyFixesAndOverride.sh`. So those fixes won't appear on Github Desktop.
 
 
 ## More Info
