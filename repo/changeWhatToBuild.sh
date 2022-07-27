@@ -4,7 +4,7 @@ cd "$(dirname "${0}")/.."
 
 ### Help message to use this script
 helpmsg() {
-	echo "Options to checkout: "
+	echo "Options to build: "
 	echo "  thol        - client, server and editor"
 	echo "  tholHetuw   - client"
 	echo "  townplanner - editor"
