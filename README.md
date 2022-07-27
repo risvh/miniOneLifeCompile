@@ -33,13 +33,13 @@ In the WSL shell run the line below to compile and start the game client:
 ./compile.sh
 ```
 
-## To start the Server (without recompiling)
+## To start the Server (without recompiling):
 
 ```bash
 ./runServer.sh
 ```
 
-## To compile 2HOL Hetuw
+## To compile 2HOL Hetuw:
 
 ```bash
 ./cleanOldBuildsAndCaches.sh
@@ -50,7 +50,7 @@ In the WSL shell run the line below to compile and start the game client:
 
 For other build targets, do `./checkoutDifferentRepo.sh` without argument to get the list of options.
 
-## Compile for other platforms
+## To compile for other platforms:
 
 The scripts cross-compile the client and editor for Windows on Linux, and compile the server for Linux by default.  
 (Remember to `./cleanOldBuildsAndCaches.sh` before compiling every time you switch between for different platforms.)
@@ -88,7 +88,7 @@ root/
 └── output/
 ```
 
-Run all the scrips from `root/miniOneLifeCompile/`. If you are running the scripts on WSL, you should not place the root folder in a WSL directory; instead put it in a Windows directory, and fire a WSL shell within that directory.
+Run all the scripts from `root/miniOneLifeCompile/`. If you are running the scripts on WSL, you should not place the root folder in a WSL directory; instead put it in a Windows directory, and fire a WSL shell within that directory.
 
 ## What do all these scripts do?
 
