@@ -4,7 +4,7 @@ Minimal scripts to compile 2HOL/OHOL client, server and editor
 
 ## TLDR usage
 
-Get WSL (Windows Subsystem for Linux) by enabling it in "Apps & features".
+Get WSL (Windows Subsystem for Linux) by enabling it in Windows' "Apps & features".
 
 In the WSL shell run the line below to compile and start the game client:
 
