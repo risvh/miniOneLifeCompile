@@ -20,6 +20,8 @@ cd ..
 
 #Make sure it has Unix EOL
 find ../OneLife -type f \( -name 'configure' \) -exec sed -i 's/\r//g' {} +
+find ../OneLife -type f \( -name '*.sh' \) -exec sed -i 's/\r//g' {} +
+find ../OneLife -type f \( -name 'Makefile*' \) -exec sed -i 's/\r//g' {} +
 
 #libpng depends on zlib, the order of linking flag matters
 sed -i 's/PLATFORM_LIBPNG_FLAG = -lz -lpng/PLATFORM_LIBPNG_FLAG = -lpng -lz/' ../minorGems/game/platforms/SDL/Makefile.MinGWCross
