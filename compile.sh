@@ -35,10 +35,6 @@ LINK="../OneLife/gameSource"
 ../miniOneLifeCompile/util/createSymLinks.sh $PLATFORM "$FOLDERS" $TARGET $LINK
 
 cp -rn ../OneLife/gameSource/settings .
-
-cp ../OneLife/gameSource/language.txt .
-cp ../OneLife/documentation/Readme.txt .
-cp ../OneLife/no_copyright.txt .
 cp ../OneLife/gameSource/reverbImpulseResponse.aiff .
 cp ../OneLife/server/wordList.txt .
 
