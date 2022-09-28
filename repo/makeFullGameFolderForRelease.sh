@@ -6,7 +6,7 @@ if [[ $PLATFORM != 1 ]] && [[ $PLATFORM != 5 ]]; then
 	echo "Usage: 1 for Linux, 5 for XCompiling for Windows (Default)"
 	exit 1
 fi
-cd "$(dirname "${0}")/.."
+cd "$(dirname "${0}")/../.."
 
 
 ###### Name the release folder
@@ -100,12 +100,26 @@ if [[ $PLATFORM == 5 ]]; then
 fi
 
 
-###### Copy the game exe
+###### Compile the game exe
+
+cd ../miniOneLifeCompile
+./cleanOldBuildsAndOptionallyCaches.sh 1
+./applyFixesAndOverride.sh
+cd ..
+
+cd OneLife
+./configure $PLATFORM
+
+cd gameSource
+if [[ $PLATFORM == 5 ]]; then export PATH="/usr/i686-w64-mingw32/bin:${PATH}"; fi
+make
+cd ../..
+cd $outputName
 
 if [[ $PLATFORM == 1 ]]; then
-    cp ../output/OneLife ./OneLifeApp
+    mv -f ../OneLife/gameSource/OneLife .
 fi
 
 if [[ $PLATFORM == 5 ]]; then
-    cp ../output/OneLife.exe .
+    mv -f ../OneLife/gameSource/OneLife.exe .
 fi
