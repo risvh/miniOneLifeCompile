@@ -4,20 +4,20 @@ Scripts to make 2HOL/OHOL client, server and editor.
 
 ## Usage
 
-1. You need to enable WSL/WSL2, follow this tutorial until it's 4th step. https://ubuntu.com/tutorials/install-ubuntu-on-wsl2-on-windows-10
+1. You need to enable WSL/WSL2, follow this tutorial until its 4th step. https://ubuntu.com/tutorials/install-ubuntu-on-wsl2-on-windows-10
 2. Create a new folder, name it say Root, go into it, shift + right click on empty space then select "Open Linux shell here"
-3. Copy and paste the following into the shell: `git clone https://github.com/risvh/miniOneLifeCompile.git miniOneLifeCompile` and hit Enter (That's how you run commands in WSL, the rest of the steps follow similarly.) If you see error like "git command not found", run `sudo apt-get update && sudo apt-get install -y git` first. (It may prompt you for the password you set up in step 1.)
-4. Run `cd miniOneLifeCompile`, now you are at the miniOneLifeCompile folder in WSL, the scripts in this repo all expect you to be in this folder when you run them. Next time you can simply open the Linux shell in this miniOneLifeCompile folder.
+3. Copy and paste the following into the shell: `git clone https://github.com/risvh/miniOneLifeCompile.git miniOneLifeCompile` and hit Enter (That's how you run commands in WSL, the rest of the steps follow similarly.) If you see the error "git command not found", run `sudo apt-get update && sudo apt-get install -y git` first. (It may prompt you for the password you set up in step 1.)
+4. Run `cd miniOneLifeCompile`, now you are at the miniOneLifeCompile folder in WSL, all the scripts in this repo expect you to be in this folder when you run them. Next time you can simply open the Linux shell in this miniOneLifeCompile folder.
 5. Get the game dependencies `./getDependencies.sh`
 6. Clone the other repositories `./cloneRepos.sh`
-7. Fix several things by running `./applyFixesAndOverride.sh`
-8. Compile (meaning you make the software from the source code) the server `./server.sh` This will run the server as well, when the shell seems to stop running (you should see something like "Listening for connection on port 8005"), press ctrl+C in the shell to terminate the server for now, to continue the remaining steps.
-9. Clear the previous build files `./cleanOldBuildsAndOptionallyCaches.sh`
+7. Run `./applyFixesAndOverride.sh`
+8. Compile (meaning you make the software from the source code) the server `./server.sh` This will start the server as well, when the shell seems to stop running (you should see something like "Listening for connection on port 8005"), press ctrl+C in the shell to terminate the server for now, so you can continue the remaining steps.
+9. Clear the previous build files before we compile for the game later `./cleanOldBuildsAndOptionallyCaches.sh`
 10. Compile the game client `./compile.sh` Again this will start the game. Close the game and continue.
-11. If you also need the editor, first get the dependencies `./getEditorDependencies.sh` then `./editor.sh`. Otherwise skip to step 12.
-12. Now if you go back into the Root folder, or whatever name you gave to it in step 2. Go into the output folder. You should see the game OneLife.exe, the server OneLifeServer and maybe the editor EditOneLife.exe if you did step 11.
-13. Before you start up the server, you need to sort out a few settings. Go into the output folder, then go into the settings folder. Open requireTicketServerCheck.ini with a text editor like Notepad, change the content to 0, save and exit. 
-13. In the shell, start the server `./runServer.sh`
+11. If you also need the editor, first get the dependencies `./getEditorDependencies.sh` then run  `./cleanOldBuildsAndOptionallyCaches.sh`, and then `./editor.sh`. Otherwise skip to step 12.
+12. Now if you go back into the Root folder, or whatever name you gave it in step 2. Go into the output folder. You should see the game OneLife.exe, the server OneLifeServer and maybe the editor EditOneLife.exe if you did step 11.
+13. Before you start the server, you need to sort out a few settings. Go into the output folder, then go into the settings folder. Open requireTicketServerCheck.ini with a text editor like Notepad, change the content to 0, save and exit. If you also need the admin tool to spawn items in your local server, change the content of vogAllowAccounts.ini to just an "*" (without the quote); also change vogModeOn.ini to 1.
+13. In the shell, start the server `./runServer.sh`, keep the shell open to let the server run.
 14. Double click OneLife.exe to start the game. Go into the Setting page in the game. Choose the GAMEPLAY tab on the left, check the box "USE CUSTOM SERVER", put "localhost" in the ADDRESS field, and "8005" in the PORT field. Click back to get back to the Login page.
 15. Now you can click PLAY to connect to your local server and play.
 
