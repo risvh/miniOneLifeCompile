@@ -100,7 +100,7 @@ Clear ALL the remotes and branches from a local repo.
 `./repo/ensureClean.sh` `[repo: OneLife / OneLifeData7 / minorGems]`  
 Check if the repos are clean, if not, prompt to reset them.
 
-`./repo/makeFullGameFolderForRelease.sh.sh` `[1: for Linux | 5: for Windows (default)]`
+`./repo/makeFullGameFolderForRelease.sh.sh` `[1: for Linux | 5: for Windows (default)]`  
 Do a full copy of the game asset folders and the game to make a complete game folder ready for release, or for diffBundle to create the patches for autoupdate.
 
 `./repo/newBranchOnThisRemote.sh`  `[repo] [remote] [newBranchName]`  
@@ -112,8 +112,8 @@ Remove a remote and all its local branches.
 `./repo/testPullRequest.sh`  `[repo] [remote] [prNum]`  
 Fetch and checkout a PR by its number as a new local branch.
 
-`./repo/undoOverride.sh`  
-Roughly undo `./applyFixesAndOverride.sh`. So those fixes won't appear on Github Desktop.
+`./repo/undoOverride.sh`  `[repo]`  
+Undo `./applyFixesAndOverride.sh`. So those fixes won't appear on Github Desktop.
 
 
 ## More Info

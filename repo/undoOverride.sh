@@ -1,31 +1,27 @@
 #!/bin/bash
 set -e
+cd "$(dirname "${0}")/../.."
 
-cd override
+repo=$1
 
-### This more or less undo ./applyFixesAndOverride.sh ...
 
-### Don't undo the overridden compile scripts, if any
-for f in $(find -path '*' -not -path '*/miniOneLifeCompile/*.sh' -type f); do
+### Stage all files
+git -C $repo add .
+
+### Loop through the override files
+for f in $(find -path "./miniOneLifeCompile/override/${repo}/*" -type f); do
     
-    ### Could have overridden files in the output folder...
-    if [[ $(git -C $(dirname ../../$f) rev-parse --is-inside-work-tree 2>/dev/null) != "true" ]]; then
-        echo "Not Git: $f"
-        continue
-    fi
+    old="miniOneLifeCompile/override/"$repo"/"
+    new=""
+    p="${f/"$old"/"$new"}"
     
-    ### Remove added files, reset changed files
-    if [[ "$(git -C $(dirname ../../$f) ls-files $(basename ../../$f))" == "" ]]; then
-        echo "Delete: $f"
-        rm -f ../../$f
-    else
-        echo "Reset: $f"
-        git -C $(dirname ../../$f) checkout -- $(basename ../../$f)
-    fi
+    ### Unstage these override files
+    git -C $repo restore --staged $p
+
 done
 
+### Discard changes of unstaged files
+git -C $repo restore .
 
-cd ..
-
-### Change EOL back to Windows-style
-find ../OneLife -type f \( -name 'configure' \) -exec sed -i 's/$/\r/g' {} +
+### Remove untracked files
+git -C $repo clean -fxd
