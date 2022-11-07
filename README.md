@@ -11,10 +11,10 @@ Scripts to make 2HOL/OHOL client, server and editor.
 5. Get the game dependencies `./getDependencies.sh`
 6. Clone the other repositories `./cloneRepos.sh`
 7. Run `./applyFixesAndOverride.sh`
-8. Compile (meaning you make the software from the source code) the server `./server.sh` This will start the server as well, when the shell seems to stop running (you should see something like "Listening for connection on port 8005"), press ctrl+C in the shell to terminate the server for now, so you can continue the remaining steps.
+8. Compile (meaning you make the software from its source code) the server `./server.sh` This will start the server as well, when the shell seems to stop running (you should see something like "Listening for connection on port 8005"), press ctrl+C in the shell to terminate the server for now, so you can continue with the remaining steps.
 9. Clear the previous build files before we compile for the game later `./cleanOldBuildsAndOptionallyCaches.sh`
 10. Compile the game client `./compile.sh` Again this will start the game. Close the game and continue.
-11. If you also need the editor, first get the dependencies `./getEditorDependencies.sh` then run  `./cleanOldBuildsAndOptionallyCaches.sh`, and then `./editor.sh`. Otherwise skip to step 12.
+11. If you also need the editor, run `./cleanOldBuildsAndOptionallyCaches.sh`, and then `./editor.sh`. Otherwise skip to step 12.
 12. Now if you go back into the Root folder, or whatever name you gave it in step 2. Go into the output folder. You should see the game OneLife.exe, the server OneLifeServer and maybe the editor EditOneLife.exe if you did step 11.
 13. Before you start the server, you need to sort out a few settings. Go into the output folder, then go into the settings folder. Open requireTicketServerCheck.ini with a text editor like Notepad, change the content to 0, save and exit. If you also need the admin tool to spawn items in your local server, change the content of vogAllowAccounts.ini to just an "*" (without the quote); also change vogModeOn.ini to 1.
 13. In the shell, start the server `./runServer.sh`, keep the shell open to let the server run.
@@ -57,9 +57,6 @@ Compile the editor.
 
 `./getDependencies.sh`  
 Get the dependencies required by the game.
-
-`./getEditorDependencies.sh`  
-Get the dependencies required by the editor.
 
 `PLATFORM_OVERRIDE`  
 Override the platform defaults. The scripts by default compile the game and editor for Windows and server for Linux. Put 1 inside this file for Linux or 5 for Windows if you're not happy about the defaults but too lazy to type the alternative number.
