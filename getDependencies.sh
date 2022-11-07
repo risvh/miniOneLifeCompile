@@ -4,9 +4,7 @@ cd "$(dirname "${0}")/.."
 
 sudo apt-get update
 
-sudo apt-get install -y git
-
-sudo apt-get install -y imagemagick xclip libglu1-mesa-dev libgl1-mesa-dev libsdl1.2-dev
+sudo apt-get install -y imagemagick xclip libglu1-mesa-dev libgl1-mesa-dev libsdl1.2-dev rsync wget
 
 sudo apt-get install -y mingw-w64
 
