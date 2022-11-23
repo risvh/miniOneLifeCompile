@@ -70,9 +70,10 @@ echo "$1 built on $d" > binary.txt
 cp ../OneLifeData7/dataVersionNumber.txt .
 
 
-###### SDL
+###### SDL and clearCache script
 
 if [[ $PLATFORM == 5 ]] && [ ! -f SDL.dll ]; then cp ../OneLife/build/win32/SDL.dll .; fi
+if [[ $PLATFORM == 5 ]] && [ ! -f clearCache.bat ]; then cp ../OneLife/build/win32/clearCache.bat .; fi
 
 
 ###### EOL
