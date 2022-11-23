@@ -28,3 +28,6 @@ sed -i 's/PLATFORM_LIBPNG_FLAG = -lz -lpng/PLATFORM_LIBPNG_FLAG = -lpng -lz/' ..
 
 #Fix to make SDL statically linked
 sed -i '/ -static `sdl-config --static-libs`$/! s/^PLATFORM_LIBPNG_FLAG .*$/& -static `sdl-config --static-libs`/' ../minorGems/game/platforms/SDL/Makefile.MinGWCross
+
+#New versions of imagemagick flips images after conversion
+sed -i 's/convert $< -type truecolormatte $@/convert -auto-orient $< -type truecolormatte $@/' ../minorGems/game/platforms/SDL/Makefile.all
