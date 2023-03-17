@@ -30,7 +30,7 @@ sed -i 's/PLATFORM_LIBPNG_FLAG = -lz -lpng/PLATFORM_LIBPNG_FLAG = -lpng -lz/' ..
 sed -i '/ -static `sdl-config --static-libs`$/! s/^PLATFORM_LIBPNG_FLAG .*$/& -static `sdl-config --static-libs`/' ../minorGems/game/platforms/SDL/Makefile.MinGWCross
 
 #New versions of imagemagick flips images after conversion
-# im_version=`convert -list configure | sed '/^LIB_VERSION_NUMBER */!d; s//,/;  s/,/,0/g;  s/,0*\([0-9][0-9]\)/\1/g' | head -n 1`
-# if [ "$im_version" -lt "06110000" ]; then
-	# sed -i 's/convert $< -type truecolormatte $@/convert -auto-orient $< -type truecolormatte $@/' ../minorGems/game/platforms/SDL/Makefile.all
-# fi
+im_version=`convert -list configure | sed '/^LIB_VERSION_NUMBER */!d; s//,/;  s/,/,0/g;  s/,0*\([0-9][0-9]\)/\1/g' | head -n 1`
+if [ "$im_version" -gt "06091100" ]; then
+	sed -i 's/convert $< -type truecolormatte $@/convert -auto-orient $< -type truecolormatte $@/' ../minorGems/game/platforms/SDL/Makefile.all
+fi
