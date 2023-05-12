@@ -34,3 +34,7 @@ sed -i '/ -static `sdl-config --static-libs`$/! s/^PLATFORM_LIBPNG_FLAG .*$/& -s
 # if [ "$im_version" -lt "06110000" ]; then
 	# sed -i 's/convert $< -type truecolormatte $@/convert -auto-orient $< -type truecolormatte $@/' ../minorGems/game/platforms/SDL/Makefile.all
 # fi
+#sed -i 's/convert $< -type truecolormatte $@/convert -auto-orient $< -type truecolormatte $@/' ../minorGems/game/platforms/SDL/Makefile.all
+
+# fix include windows.h letter case in discord_sdk (For cross-compiling client for Windows on Linux)
+sed -i 's/<Windows.h>/<windows.h>/' ../dependencies/discord_game_sdk/c/discord_game_sdk.h;

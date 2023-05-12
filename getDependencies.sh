@@ -4,7 +4,7 @@ cd "$(dirname "${0}")/.."
 
 sudo apt-get update
 
-sudo apt-get install -y rsync wget
+sudo apt-get install -y rsync wget unzip
 
 sudo apt-get install -y git
 
@@ -68,16 +68,9 @@ if [ ! -d l*png* ]; then
 	popd
 fi
 
-cd ../dependencies
-# Getting discord_sdk
+# Getting discord_game_sdk
 if [ ! -d discord_game_sdk ]; then
-	# TODO: don't change file structure. somone would want to compile without using this script...
-	# but this structure is now expected in the makefile...
-	pushd .
 	wget https://dl-game-sdk.discordapp.net/3.2.1/discord_game_sdk.zip
 	unzip -d discord_game_sdk discord_game_sdk.zip
 	rm discord_game_sdk.zip
-	mv -f discord_game_sdk/c discord_game_sdk/include
-	rm -rf discord_game_sdk/cpp discord_game_sdk/csharp discord_game_sdk/examples discord_game_sdk/lib/aarch64
-	popd
 fi
