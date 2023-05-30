@@ -55,5 +55,5 @@ POLL_PLATFORM = Linux
 POLL_PLATFORM_PATH = linux
 
 # not used for some builds
-PLATFORM_DISCORD_SDK_FLAG = -l:discord_game_sdk.so -L$(DISCORD_SDK_PATH)/lib/x86_64
+PLATFORM_DISCORD_SDK_FLAG = -l:discord_game_sdk.so -L$(DISCORD_SDK_PATH)/lib/x86_64 -Wl,-rpath,.
 #-Wl,-Bstatic
