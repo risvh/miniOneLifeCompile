@@ -1,10 +1,10 @@
 #!/bin/bash
-set -e
+set -ex
 cd "$(dirname "${0}")/.."
 
 sudo apt-get update
 
-sudo apt-get install -y rsync wget
+sudo apt-get install -y rsync wget unzip
 
 sudo apt-get install -y git
 
@@ -20,6 +20,7 @@ cd dependencies
 
 # Getting SDL
 if [ ! -d SDL* ]; then
+	pushd .
 	wget https://www.libsdl.org/release/SDL-1.2.15.tar.gz -O- | tar xfz -
 	cd SDL*
 	./configure \
@@ -32,10 +33,12 @@ if [ ! -d SDL* ]; then
 		LDFLAGS="-L/usr/i686-w64-mingw32/lib"
 	make
 	sudo make install
+	popd
 fi
 
 # Getting zlib
 if [ ! -d zlib* ]; then
+	pushd .
 	wget http://zlib.net/fossils/zlib-1.2.12.tar.gz -O- | tar xfz -
 	cd zlib*
 	host="i686-w64-mingw32"
@@ -47,12 +50,12 @@ if [ ! -d zlib* ]; then
 		SHARED_MODE=1 \
 		PREFIX=$host- \
 		install
+	popd
 fi
-
-cd ..
 
 # Getting libpng
 if [ ! -d l*png* ]; then
+	pushd .
 	wget http://downloads.sourceforge.net/project/libpng/libpng16/1.6.37/libpng-1.6.37.tar.gz -O- | tar xfz -
 	cd l*png*
 	./configure \
@@ -62,4 +65,12 @@ if [ ! -d l*png* ]; then
 		LDFLAGS="-L/usr/i686-w64-mingw32/lib"
 	make
 	sudo make install
+	popd
+fi
+
+# Getting discord_game_sdk
+if [ ! -d discord_game_sdk ]; then
+	wget https://dl-game-sdk.discordapp.net/3.2.1/discord_game_sdk.zip
+	unzip -d discord_game_sdk discord_game_sdk.zip
+	rm discord_game_sdk.zip
 fi
