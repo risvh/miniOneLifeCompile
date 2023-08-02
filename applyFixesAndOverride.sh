@@ -31,7 +31,7 @@ sed -i '/ -static `sdl-config --static-libs`$/! s/^PLATFORM_LIBPNG_FLAG .*$/& -s
 
 #New versions of imagemagick flips images after conversion
 im_version=`convert -list configure | sed '/^LIB_VERSION_NUMBER */!d; s//,/;  s/,/,0/g;  s/,0*\([0-9][0-9]\)/\1/g' | head -n 1`
-if [ "$im_version" -lt "06110000" ]; then
+if [ "$im_version" -ge "06091075" ]; then
 	sed -i 's/convert $< -type truecolormatte $@/convert -auto-orient $< -type truecolormatte $@/' ../minorGems/game/platforms/SDL/Makefile.all
 fi
 
