@@ -4,8 +4,8 @@ Scripts to make 2HOL/OHOL client, server and editor.
 
 ## Usage
 
-1. You need to enable WSL/WSL2, follow this tutorial until its 4th step. https://ubuntu.com/tutorials/install-ubuntu-on-wsl2-on-windows-10
-2. Create a new folder, name it say Root, go into it, shift + right click on empty space then select "Open Linux shell here"
+1. You need to enable WSL/WSL2, follow this tutorial, don't forget the "Configure Ubuntu" section near the bottom. https://canonical-ubuntu-wsl.readthedocs-hosted.com/en/latest/guides/install-ubuntu-wsl2/
+2. Close the terminal that you may have started in step 1. Open Windows Explorer, create a new folder somewhere for this project, name it say Root, go into it, shift + right click on empty space then select "Open Linux shell here"
 3. Copy and paste the following into the shell: `git clone https://github.com/risvh/miniOneLifeCompile.git miniOneLifeCompile` and hit Enter (That's how you run commands in WSL, the rest of the steps follow similarly.) If you see the error "git command not found", run `sudo apt-get update && sudo apt-get install -y git` first. (It may prompt you for the password you set up in step 1.)
 4. Run `cd miniOneLifeCompile`, now you are at the miniOneLifeCompile folder in WSL, all the scripts in this repo expect you to be in this folder when you run them. Next time you can simply open the Linux shell in this miniOneLifeCompile folder.
 5. Get the game dependencies `./getDependencies.sh`
@@ -18,7 +18,7 @@ Scripts to make 2HOL/OHOL client, server and editor.
 12. Now if you go back into the Root folder, or whatever name you gave it in step 2. Go into the output folder. You should see the game OneLife.exe, the server OneLifeServer and maybe the editor EditOneLife.exe if you did step 11.
 13. Before you start the server, you need to sort out a few settings. Go into the output folder, then go into the settings folder. Open requireTicketServerCheck.ini with a text editor like Notepad, change the content to 0, save and exit. If you also need the admin tool to spawn items in your local server, change the content of vogAllowAccounts.ini to just an "*" (without the quote); also change vogModeOn.ini to 1.
 13. In the shell, start the server `./runServer.sh`, keep the shell open to let the server run.
-14. Double click OneLife.exe to start the game. Go into the Setting page in the game. Choose the GAMEPLAY tab on the left, check the box "USE CUSTOM SERVER", put "localhost" in the ADDRESS field, and "8005" in the PORT field. Click back to get back to the Login page.
+14. Double click OneLife.exe to start the game. Go into the Setting page in the game. Choose the GAMEPLAY tab on the left, check the box "USE CUSTOM SERVER", put "localhost" in the ADDRESS field, and "8005" in the PORT field. Click BACK to get back to the Login page.
 15. Now you can click PLAY to connect to your local server and play.
 
 If you're stuck, you can join the 2HOL discord and ask for help there:) https://discord.gg/Jd9Es3f
@@ -26,7 +26,7 @@ If you're stuck, you can join the 2HOL discord and ask for help there:) https://
 
 ## Note 
 
-The scripts expect folder structure as below, you may want to clone this repo within a root folder:
+The scripts expect folder structure as below, you may want to clone this repo within a parent folder:
 ```
 Root/
 ├── miniOneLifeCompile/
