@@ -4,15 +4,18 @@ cd "$(dirname "${0}")/.."
 
 sudo apt-get update
 
-sudo apt-get install -y rsync wget unzip
-
-sudo apt-get install -y git
-
-sudo apt-get install -y imagemagick xclip libglu1-mesa-dev libgl1-mesa-dev libsdl1.2-dev
-
-sudo apt-get install -y mingw-w64
-
-sudo apt-get install -y build-essential
+sudo apt-get install -y  \
+	rsync \
+	wget \
+	unzip \
+	git \
+	imagemagick \
+	xclip \
+	libglu1-mesa-dev \
+	libgl1-mesa-dev \
+	libsdl1.2-dev \
+	mingw-w64 \
+	build-essential \
 
 
 mkdir -p dependencies
