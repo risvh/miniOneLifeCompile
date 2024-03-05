@@ -97,6 +97,12 @@ Clear ALL the remotes and branches from a local repo.
 `./repo/ensureClean.sh` `[repo: OneLife / OneLifeData7 / minorGems]`  
 Check if the repos are clean, if not, prompt to reset them.
 
+`./repo/forceClean.sh` `[repo]`  
+Reset the repos.
+
+`./repo/freeLockedRepo.sh` `[repo]`  
+Sometimes repos are locked, this seems to unfreeze them.
+
 `./repo/makeFullGameFolderForRelease.sh.sh` `[1: for Linux | 5: for Windows (default)]`  
 Do a full copy of the game asset folders and the game to make a complete game folder ready for release, or for diffBundle to create the patches for autoupdate.
 

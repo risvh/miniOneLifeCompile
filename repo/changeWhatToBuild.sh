@@ -18,6 +18,12 @@ if [[ "$1" == "" ]]; then
     exit 1
 fi
 
+### Sometimes repos are locked, free them
+for repo in OneLife OneLifeData7 minorGems; do
+    ### Refresh index
+    git -C $repo status
+done
+
 ### Ensure all repos are clean before checking out
 dirty=0
 for repo in OneLife OneLifeData7 minorGems; do
@@ -31,8 +37,11 @@ if [ "$dirty" -ne 0 ]; then
     read -p "Discard all changes? (y/n)" reply
     if [[ "$reply" == "y" ]]; then
         for repo in OneLife OneLifeData7 minorGems; do
-            git -C $repo clean -f -x -d;
-            git -C $repo checkout -- .
+            ### Discard changes of unstaged files
+            git -C $repo restore .
+
+            ### Remove untracked files
+            git -C $repo clean -fxd
         done
     else
         echo "Abort"
