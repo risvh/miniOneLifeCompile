@@ -136,3 +136,5 @@ More information on the how to compile this game:
 [Some old scripts to compile 2HOL](https://github.com/twohoursonelife/2HOL)
 
 [Hetuw's compile scripts](https://github.com/hetuw/OneLife/tree/master/scripts/hetuwScripts)
+
+[Dopey's server setup guide](https://discord.com/channels/423293333864054833/1021330461865291796/1021337048747094026)
