@@ -2,21 +2,40 @@
 set -ex
 cd "$(dirname "${0}")/.."
 
-sudo apt-get update
+if [[ "$1" = "arch" ]]; then
+	sudo pacman -Sy
 
-sudo apt-get install -y  \
-	rsync \
-	wget \
-	unzip \
-	git \
-	imagemagick \
-	xclip \
-	libglu1-mesa-dev \
-	libgl1-mesa-dev \
-	libsdl1.2-dev \
-	mingw-w64 \
-	build-essential \
+	sudo pacman -S --noconfirm \
+		rsync wget unzip git \
+		imagemagick xclip mesa \
+		lib32-sdl_image mingw-w64 base-devel
+elif [[ "$1" = "fedora" ]]; then
+	sudo yum update
 
+	sudo yum install -y \
+		rsync wget unzip git \
+		ImageMagick xclip \
+		mesa-libGLU-devel \
+		mesa-libGL-devel \
+		mingw32-gcc-c++ \
+		libpng-devel SDL-devel \
+		gcc-c++ make
+else
+	sudo apt-get update
+
+	sudo apt-get install -y  \
+		rsync \
+		wget \
+		unzip \
+		git \
+		imagemagick \
+		xclip \
+		libglu1-mesa-dev \
+		libgl1-mesa-dev \
+		libsdl1.2-dev \
+		mingw-w64 \
+		build-essential
+fi
 
 mkdir -p dependencies
 cd dependencies
