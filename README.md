@@ -138,3 +138,5 @@ More information on the how to compile this game:
 [Hetuw's compile scripts](https://github.com/hetuw/OneLife/tree/master/scripts/hetuwScripts)
 
 [Dopey's server setup guide](https://discord.com/channels/423293333864054833/1021330461865291796/1021337048747094026)
+
+[Community Crucible Mod (CCM)'s build scripts](https://github.com/twohoursonelife/archive-build-tools/tree/master/scripts)
