@@ -13,8 +13,7 @@ sed -i 's/<Winsock.h>/<winsock.h>/' minorGems/network/unix/SocketPollUnix.cpp;
 
 popd
 
-cd override
-rsync -vr . ../..
+cd override && rsync -vr . ../..
 
 cd ..
 
